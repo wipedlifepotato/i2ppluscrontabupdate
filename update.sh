@@ -1,9 +1,11 @@
 #!/bin/bash
+user=user
 website=https://i2pplus.com/
 i2pupdatezip=i2pupdate.zip
 i2pupdatetorrent=i2pupdate.zip.torrent
-i2pdir=/home/user/.i2p
-i2psnarkdir=/home/user/.i2p/i2psnark
+i2pdir=/home/$user/.i2p
+i2psnarkdir=/home/$user/.i2p/i2psnark
+i2psrvc=/home/$user/i2p/i2prouter
 getI2PUpdate(){
 	echo "download ${website}/${i2pupdatezip}"
 	wget "${website}/${i2pupdatezip}" -O tmp.zip
@@ -34,4 +36,5 @@ if checkLastIs;then
 
 	cp old.zip $i2pdir/i2pupdate.zip
 	cp old.torrent $i2psnarkdir/i2pupdate.zip.`date +%s`.torrent
+	$i2psrvc restart
 fi;
